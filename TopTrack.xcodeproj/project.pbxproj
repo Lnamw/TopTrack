@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		AAF77BB01CECB774009408DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BAF1CECB774009408DA /* main.m */; };
 		AAF77BB31CECB774009408DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BB21CECB774009408DA /* AppDelegate.m */; };
-		AAF77BB61CECB775009408DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BB51CECB775009408DA /* ViewController.m */; };
 		AAF77BB91CECB775009408DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAF77BB71CECB775009408DA /* Main.storyboard */; };
 		AAF77BBB1CECB775009408DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF77BBA1CECB775009408DA /* Assets.xcassets */; };
 		AAF77BBE1CECB775009408DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAF77BBC1CECB775009408DA /* LaunchScreen.storyboard */; };
+		AAF77BC81CECBA92009408DA /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BC71CECBA92009408DA /* SearchViewController.m */; };
+		AAF77BCC1CECBD6B009408DA /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BCB1CECBD6B009408DA /* Artist.m */; };
+		AAF77BD61CECECDA009408DA /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BD51CECECDA009408DA /* NetworkManager.m */; };
+		AAF77BDA1CECF2D7009408DA /* TrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BD91CECF2D7009408DA /* TrackCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +23,18 @@
 		AAF77BAF1CECB774009408DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AAF77BB11CECB774009408DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAF77BB21CECB774009408DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		AAF77BB41CECB775009408DA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AAF77BB51CECB775009408DA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AAF77BB81CECB775009408DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AAF77BBA1CECB775009408DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAF77BBD1CECB775009408DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAF77BBF1CECB775009408DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAF77BC61CECBA92009408DA /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		AAF77BC71CECBA92009408DA /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		AAF77BCA1CECBD6B009408DA /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
+		AAF77BCB1CECBD6B009408DA /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
+		AAF77BD41CECECDA009408DA /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		AAF77BD51CECECDA009408DA /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		AAF77BD81CECF2D7009408DA /* TrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCell.h; sourceTree = "<group>"; };
+		AAF77BD91CECF2D7009408DA /* TrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +67,12 @@
 		AAF77BAD1CECB774009408DA /* TopTrack */ = {
 			isa = PBXGroup;
 			children = (
+				AAF77BD71CECF28C009408DA /* Custom Cell */,
+				AAF77BD01CECEC88009408DA /* Networking */,
+				AAF77BC91CECBD49009408DA /* Models */,
+				AAF77BC51CECBA6B009408DA /* View Controllers */,
 				AAF77BB11CECB774009408DA /* AppDelegate.h */,
 				AAF77BB21CECB774009408DA /* AppDelegate.m */,
-				AAF77BB41CECB775009408DA /* ViewController.h */,
-				AAF77BB51CECB775009408DA /* ViewController.m */,
 				AAF77BB71CECB775009408DA /* Main.storyboard */,
 				AAF77BBA1CECB775009408DA /* Assets.xcassets */,
 				AAF77BBC1CECB775009408DA /* LaunchScreen.storyboard */,
@@ -77,6 +88,42 @@
 				AAF77BAF1CECB774009408DA /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AAF77BC51CECBA6B009408DA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AAF77BC61CECBA92009408DA /* SearchViewController.h */,
+				AAF77BC71CECBA92009408DA /* SearchViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		AAF77BC91CECBD49009408DA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AAF77BCA1CECBD6B009408DA /* Artist.h */,
+				AAF77BCB1CECBD6B009408DA /* Artist.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		AAF77BD01CECEC88009408DA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AAF77BD41CECECDA009408DA /* NetworkManager.h */,
+				AAF77BD51CECECDA009408DA /* NetworkManager.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		AAF77BD71CECF28C009408DA /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AAF77BD81CECF2D7009408DA /* TrackCell.h */,
+				AAF77BD91CECF2D7009408DA /* TrackCell.m */,
+			);
+			name = "Custom Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,8 +196,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAF77BB61CECB775009408DA /* ViewController.m in Sources */,
 				AAF77BB31CECB774009408DA /* AppDelegate.m in Sources */,
+				AAF77BDA1CECF2D7009408DA /* TrackCell.m in Sources */,
+				AAF77BC81CECBA92009408DA /* SearchViewController.m in Sources */,
+				AAF77BCC1CECBD6B009408DA /* Artist.m in Sources */,
+				AAF77BD61CECECDA009408DA /* NetworkManager.m in Sources */,
 				AAF77BB01CECB774009408DA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
