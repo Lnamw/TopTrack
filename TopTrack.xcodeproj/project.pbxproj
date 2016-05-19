@@ -16,6 +16,10 @@
 		AAF77BCC1CECBD6B009408DA /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BCB1CECBD6B009408DA /* Artist.m */; };
 		AAF77BD61CECECDA009408DA /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BD51CECECDA009408DA /* NetworkManager.m */; };
 		AAF77BDA1CECF2D7009408DA /* TrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BD91CECF2D7009408DA /* TrackCell.m */; };
+		AAF77BE61CEDF538009408DA /* BuilderClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BE51CEDF538009408DA /* BuilderClass.m */; };
+		AAF77BEC1CEE0928009408DA /* ArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BEB1CEE0928009408DA /* ArtistCell.m */; };
+		AAF77BEF1CEE0E61009408DA /* TopTracksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BEE1CEE0E61009408DA /* TopTracksTableViewController.m */; };
+		AAF77BF21CEE1C8F009408DA /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77BF11CEE1C8F009408DA /* Track.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,14 @@
 		AAF77BD51CECECDA009408DA /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		AAF77BD81CECF2D7009408DA /* TrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCell.h; sourceTree = "<group>"; };
 		AAF77BD91CECF2D7009408DA /* TrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCell.m; sourceTree = "<group>"; };
+		AAF77BE41CEDF538009408DA /* BuilderClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuilderClass.h; sourceTree = "<group>"; };
+		AAF77BE51CEDF538009408DA /* BuilderClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuilderClass.m; sourceTree = "<group>"; };
+		AAF77BEA1CEE0928009408DA /* ArtistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistCell.h; sourceTree = "<group>"; };
+		AAF77BEB1CEE0928009408DA /* ArtistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistCell.m; sourceTree = "<group>"; };
+		AAF77BED1CEE0E61009408DA /* TopTracksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopTracksTableViewController.h; sourceTree = "<group>"; };
+		AAF77BEE1CEE0E61009408DA /* TopTracksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopTracksTableViewController.m; sourceTree = "<group>"; };
+		AAF77BF01CEE1C8F009408DA /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		AAF77BF11CEE1C8F009408DA /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +107,8 @@
 			children = (
 				AAF77BC61CECBA92009408DA /* SearchViewController.h */,
 				AAF77BC71CECBA92009408DA /* SearchViewController.m */,
+				AAF77BED1CEE0E61009408DA /* TopTracksTableViewController.h */,
+				AAF77BEE1CEE0E61009408DA /* TopTracksTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -104,6 +118,10 @@
 			children = (
 				AAF77BCA1CECBD6B009408DA /* Artist.h */,
 				AAF77BCB1CECBD6B009408DA /* Artist.m */,
+				AAF77BF01CEE1C8F009408DA /* Track.h */,
+				AAF77BF11CEE1C8F009408DA /* Track.m */,
+				AAF77BE41CEDF538009408DA /* BuilderClass.h */,
+				AAF77BE51CEDF538009408DA /* BuilderClass.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -122,6 +140,8 @@
 			children = (
 				AAF77BD81CECF2D7009408DA /* TrackCell.h */,
 				AAF77BD91CECF2D7009408DA /* TrackCell.m */,
+				AAF77BEA1CEE0928009408DA /* ArtistCell.h */,
+				AAF77BEB1CEE0928009408DA /* ArtistCell.m */,
 			);
 			name = "Custom Cell";
 			sourceTree = "<group>";
@@ -196,12 +216,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAF77BE61CEDF538009408DA /* BuilderClass.m in Sources */,
 				AAF77BB31CECB774009408DA /* AppDelegate.m in Sources */,
 				AAF77BDA1CECF2D7009408DA /* TrackCell.m in Sources */,
+				AAF77BF21CEE1C8F009408DA /* Track.m in Sources */,
 				AAF77BC81CECBA92009408DA /* SearchViewController.m in Sources */,
 				AAF77BCC1CECBD6B009408DA /* Artist.m in Sources */,
 				AAF77BD61CECECDA009408DA /* NetworkManager.m in Sources */,
+				AAF77BEC1CEE0928009408DA /* ArtistCell.m in Sources */,
 				AAF77BB01CECB774009408DA /* main.m in Sources */,
+				AAF77BEF1CEE0E61009408DA /* TopTracksTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +372,7 @@
 				AAF77BC41CECB775009408DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,14 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol SearchViewControllerDelegate <NSObject>
 
--(void)returnArtistTyped:(NSString *)artist;
-
-@end
 
 @interface SearchViewController : UIViewController
 
-@property (weak, nonatomic)id<SearchViewControllerDelegate>delegate;
+@property (nonatomic, copy) NSString *artist;
+
 
 @end

@@ -8,16 +8,18 @@
 
 #import "SearchViewController.h"
 #import "Artist.h"
+#import "NetworkManager.h"
+#import "BuilderClass.h"
+#import "ArtistCell.h"
+#import "TopTracksTableViewController.h"
 
-@interface SearchViewController () <UITextFieldDelegate>
 
-@property (nonatomic, copy) NSString *artist;
+@interface SearchViewController () <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) NSMutableArray *artistList;
 
 @property (weak, nonatomic) IBOutlet UITextField *artistTextField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-- (IBAction)searchButtonPressed:(id)sender;
 
 @end
 
@@ -26,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.artistList = [[NSMutableArray alloc] initWithCapacity:0];
 
 }
 
@@ -34,51 +37,77 @@
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField {
     
-    [self.artistTextField resignFirstResponder];
-    
+    if (![textField.text isEqualToString:@""]) {
+        
+        [self.artistTextField resignFirstResponder];
+        
+        NetworkManager *netMgr = [[NetworkManager alloc]init];
+        
+        [netMgr getArtistWithArtistName:textField.text andCompletion:^(NSArray *artists, NSError *error) {
+            if(!error)
+            {
+                BuilderClass *artistBuilder = [[BuilderClass alloc]init];
+                for (NSDictionary *dict in artists)
+                {
+                    Artist *newArtist = [artistBuilder artistFromDictionary:dict];
+                    
+                    [self.artistList addObject:newArtist];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadData];
+                    });
+                }
+            }
+        }];
+    }
     return YES;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return self.artistList.count;
 }
 
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ArtistCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArtistCell" forIndexPath:indexPath];
 
-// Configure the cell...
+    Artist *artist = self.artistList[indexPath.row];
+    cell.textLabel.text = artist.name;
+    return cell;
+}
 
-//    return cell;
-//}
+#pragma mark - Table View Delegate
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self performSegueWithIdentifier:@"ShowTopTracksSegue" sender:nil];
+}
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
+    
+    if ([segue.identifier isEqualToString:@"ShowTopTracksSegue"]) {
+        
+        TopTracksTableViewController *vc = (TopTracksTableViewController *)[segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        Artist *artist = self.artistList[indexPath.row];
+        vc.selectedArtistId = artist.artistID;
+        
+    }
 
     
     
 }
 
-#pragma mark - Action Handler
 
-- (IBAction)searchButtonPressed:(id)sender {
-    
-    self.artist = self.artistTextField.text;
-    [self.delegate returnArtistTyped:self.artist];
-    
-}
 
 
 @end

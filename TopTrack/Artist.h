@@ -13,4 +13,6 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *artistID;
 
+-(instancetype)initWithName:(NSString *)name andID:(NSString *)artistID;
+
 @end

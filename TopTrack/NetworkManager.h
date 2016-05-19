@@ -7,15 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SearchViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface NetworkManager : NSObject <SearchViewControllerDelegate>
+@interface NetworkManager : NSObject 
 
-typedef void(^completionBlock)(NSArray *albums, NSError *error);
-//typedef void(^downloadCompletionBlock) (UIImage *artwork);
+typedef void(^completionBlock)(NSArray *artists, NSError *error);
+typedef void(^downloadCompletionBlock) (UIImage *albumImage);
 
-- (void)getTracksWithCompletion:(completionBlock)completionHandler;
-//- (void)getArtworkForURL:(NSURL *)url completionBlock:(downloadCompletionBlock)completionBlock;
+
+
+-(void)getArtistWithArtistName:(NSString *)artistName andCompletion:(completionBlock)completionHandler;
+
+-(void)getTopTracksWithId:(NSString *)artistId andCompletion:(completionBlock)completionHandler;
+
+- (void)getAlbumImagefromURL:(NSURL *)url completionBlock:(downloadCompletionBlock)completionBlock;
 
 
 

@@ -10,4 +10,9 @@
 
 @interface TrackCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *albumImageView;
+@property (weak, nonatomic) IBOutlet UILabel *trackNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *albumNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
+
 @end

@@ -7,12 +7,9 @@
 //
 
 #import "NetworkManager.h"
+#import "SearchViewController.h"
 
 @interface NetworkManager ()
-
-@property (nonatomic, strong) NSString *artist;
-@property (nonatomic, strong) completionBlock completionHandler;
-@property (nonatomic, strong) NSMutableArray *albums;
 
 @property (nonatomic, strong) NSURLSessionConfiguration *sessionConfig;
 @property (nonatomic, strong) NSURLSession *session;
@@ -21,50 +18,82 @@
 
 @implementation NetworkManager
 
--(void)getTracksWithCompletion:(completionBlock)completionHandler
+-(void)getArtistWithArtistName:(NSString *)artistName andCompletion:(completionBlock)completionHandler
 {
-//    
-//    self.completionHandler = completionHandler;
-//    
-//    self.sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    //    No need headers so we can setup without any other configuration (see in postman)
-//    
-//    self.session = [NSURLSession sessionWithConfiguration:self.sessionConfig];
-//    
-//    __weak typeof (self) weakself = self;
-//    
-//    NSURLSessionDataTask *albumJSON = [self.session dataTaskWithURL:[NSURL URLWithString:kURL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        
-//        if (error) {
-//            //TODO handle error
-//        } else {
-//            
-//            NSError *jsonError;
-//            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-//            
-//            NSArray *albums = jsonDict[@"items"];
-//            
-//            [weakself getAlbumDataForAlbums:albums];
-//            
-//        }
-//    }];
-//    
-//    
-//    [albumJSON resume];
+    NSString *artistNameForUrl = [artistName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+
+    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?q=%@&type=artist", artistNameForUrl];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    self.sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self.session = [NSURLSession sessionWithConfiguration:self.sessionConfig];
+    
+    NSURLSessionDataTask *artistJSON = [self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            //TODO handle error
+        } else {
+            
+            NSError *jsonError;
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+            
+            NSArray *artistArray = jsonDict[@"artists"][@"items"];
+            completionHandler(artistArray, error);
+        }
+    }];
+    [artistJSON resume];
+}
+
+-(void)getTopTracksWithId:(NSString *)artistId andCompletion:(completionBlock)completionHandler
+{
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/artists/%@/top-tracks?country=GB", artistId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    self.sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self.session = [NSURLSession sessionWithConfiguration:self.sessionConfig];
+    
+    NSURLSessionDataTask *trackJSON = [self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            //TODO handle error
+        } else {
+            
+            NSError *jsonError;
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+            
+            NSArray *trackArray = jsonDict[@"tracks"];
+            completionHandler(trackArray, error);
+        }
+    }];
+    [trackJSON resume];
 }
 
 
-#pragma mark - SearchViewController Delegate
-
--(void)returnArtistTyped:(NSString *)artist {
-
-    SearchViewController *searchVC = [[SearchViewController alloc] init];
-    searchVC.delegate = self;
+- (void)getAlbumImagefromURL:(NSURL *)url completionBlock:(downloadCompletionBlock)completionBlock
+{
+    NSURLSessionDownloadTask *downloadTask = [self.session downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        UIImage *downloadedImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completionBlock) {
+                completionBlock(downloadedImage);
+            }
+        });
+    }];
     
-    self.artist = artist;
-    
-    NSLog(@"%@", artist);
+    [downloadTask resume];
 }
+
+
+
 
 
 @end
+
+
+
+
+

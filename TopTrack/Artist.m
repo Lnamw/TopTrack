@@ -10,4 +10,15 @@
 
 @implementation Artist
 
+-(instancetype)initWithName:(NSString *)name andID:(NSString *)artistID
+{
+    if (self = [super init]) {
+        self.name = name;
+        self.artistID = artistID;
+    }
+    return self;
+}
+
+
+
 @end
